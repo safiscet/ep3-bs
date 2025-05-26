@@ -1,0 +1,36 @@
+name: Deploy to prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Set to true for dry run, false for actual deployment'
+        required: false
+        default: 'true'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y git-ftp
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1 # oder deine PHP-Version
+
+      - name: Install Composer Dependencies
+        run: |
+          php -r "copy('https://getcomposer.org/composer.phar', 'composer.phar');"
+          php composer.phar install --ignore-platform-reqs
+
+      - name: Deploy to FTP server
+        run: |
+          git-ftp push -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} --dry-run
+        continue-on-error: true  # Continue to next steps even if deployment fails

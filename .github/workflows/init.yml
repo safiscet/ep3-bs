@@ -1,0 +1,25 @@
+name: Init deployment state
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Set to true for dry run, false for actual deployment'
+        required: false
+        default: 'true'
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y git-ftp
+
+      - name: Init git-ftp
+        run: |
+          git-ftp init -vv --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
