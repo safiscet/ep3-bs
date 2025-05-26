@@ -6,7 +6,8 @@ on:
       dry_run:
         description: 'Set to true for dry run, false for actual deployment'
         required: false
-        default: 'true'
+        type: boolean
+        default: true
 
 jobs:
   init:
