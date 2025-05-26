@@ -22,4 +22,4 @@ jobs:
 
       - name: Catchup git-ftp
         run: |
-          git-ftp catchup -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} --dry-run
+          git-ftp catchup -vv --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
