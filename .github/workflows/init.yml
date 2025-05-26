@@ -36,4 +36,4 @@ jobs:
 
       - name: Init git-ftp
         run: |
-          git-ftp init -v --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp init --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

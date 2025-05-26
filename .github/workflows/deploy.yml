@@ -36,4 +36,4 @@ jobs:
 
       - name: Deploy to FTP server
         run: |
-          git-ftp push -v --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp push --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
