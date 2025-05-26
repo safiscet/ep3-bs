@@ -32,5 +32,4 @@ jobs:
 
       - name: Deploy to FTP server
         run: |
-          git-ftp push -vv --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
-        continue-on-error: true  # Continue to next steps even if deployment fails
+          git-ftp push -v --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

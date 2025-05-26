@@ -9,7 +9,7 @@ on:
         default: 'true'
 
 jobs:
-  init:
+  catchup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,4 +22,4 @@ jobs:
 
       - name: Catchup git-ftp
         run: |
-          git-ftp catchup -vv --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp catchup -v --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
