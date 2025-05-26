@@ -9,6 +9,9 @@ on:
         type: boolean
         default: true
 
+env:
+  DRY_RUN_PARAM: ${{ inputs.dry_run && '--dry-run' || '' }}
+
 jobs:
   init:
     runs-on: ubuntu-latest
@@ -33,4 +36,4 @@ jobs:
 
       - name: Init git-ftp
         run: |
-          git-ftp init -v --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp init -v --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

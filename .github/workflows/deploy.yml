@@ -9,6 +9,9 @@ on:
         type: boolean
         default: true
 
+env:
+  DRY_RUN_PARAM: ${{ inputs.dry_run && '--dry-run' || '' }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -33,4 +36,4 @@ jobs:
 
       - name: Deploy to FTP server
         run: |
-          git-ftp push -v --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp push -v --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

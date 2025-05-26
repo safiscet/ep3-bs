@@ -26,4 +26,4 @@ jobs:
 
       - name: Catchup git-ftp
         run: |
-          git-ftp catchup -v --insecure --dry-run ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp catchup -v --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
