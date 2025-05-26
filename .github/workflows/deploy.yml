@@ -6,7 +6,11 @@ on:
       dry_run:
         description: 'Set to true for dry run, false for actual deployment'
         required: false
-        default: 'true'
+        type: boolean
+        default: true
+
+env:
+  DRY_RUN_PARAM: ${{ inputs.dry_run && '--dry-run' || '' }}
 
 jobs:
   deploy:
@@ -32,5 +36,4 @@ jobs:
 
       - name: Deploy to FTP server
         run: |
-          git-ftp push -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} --dry-run
-        continue-on-error: true  # Continue to next steps even if deployment fails
+          git-ftp push --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

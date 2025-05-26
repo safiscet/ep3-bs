@@ -6,7 +6,11 @@ on:
       dry_run:
         description: 'Set to true for dry run, false for actual deployment'
         required: false
-        default: 'true'
+        type: boolean
+        default: true
+
+env:
+  DRY_RUN_PARAM: ${{ inputs.dry_run && '--dry-run' || '' }}
 
 jobs:
   init:
@@ -20,6 +24,16 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y git-ftp
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1 # oder deine PHP-Version
+
+      - name: Install Composer Dependencies
+        run: |
+          php -r "copy('https://getcomposer.org/composer.phar', 'composer.phar');"
+          php composer.phar install --ignore-platform-reqs
+
       - name: Init git-ftp
         run: |
-          git-ftp init -vv --insecure --dry-run -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
+          git-ftp init --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}

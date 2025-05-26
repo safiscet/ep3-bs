@@ -6,10 +6,14 @@ on:
       dry_run:
         description: 'Set to true for dry run, false for actual deployment'
         required: false
-        default: 'true'
+        type: boolean
+        default: true
+
+env:
+  DRY_RUN_PARAM: ${{ inputs.dry_run && '--dry-run' || '' }}
 
 jobs:
-  init:
+  catchup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,4 +26,4 @@ jobs:
 
       - name: Catchup git-ftp
         run: |
-          git-ftp catchup -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }} --dry-run
+          git-ftp catchup --insecure ${{ env.DRY_RUN_PARAM }} -u ${{ secrets.FTP_USER }} -p ${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
