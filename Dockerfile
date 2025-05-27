@@ -20,3 +20,7 @@ RUN rm -f /var/www/html/config/autoload/local.php.dist
 
 # Set working directory
 WORKDIR /var/www/html
+
+# Ensure the www-data user has write permissions to the /var/www/html/data directory
+RUN chown -R www-data:www-data /var/www/html/data
+RUN chmod -R 755 /var/www/html/data
