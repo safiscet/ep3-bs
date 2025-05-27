@@ -205,7 +205,7 @@ return array(
     'This will happen during a quick manual verification of your user account data.'
         => 'Dies geschieht nach einer kurzen manuellen Prüfung Ihrer Daten.',
     'Please be patient, this will be done soon.'
-        => 'Bitte haben Sie etwas Geduld.',
+        => '<strong>Sollte der Account nach 24 Stunden noch nicht freigeschaltet sein, bitte melden Sie sich unter info@tennis-schwabmuenchen.de</strong>',
     'The only step remaining is to %sactivate your user account%s.'
         => 'Jetzt muss Ihr Benutzerkonto nur noch kurz %saktiviert werden%s.',
     'For this, we just sent you an email with an activation link within. Please check.'
@@ -220,7 +220,7 @@ return array(
 
     'You probably guessed it: To use our service, that is to book spare %s online, you need to create your own user account first.'
         => 'Sie haben es sicher schon vermutet: Um unser Angebot nutzen zu können, also um freie %s online buchen zu können, müssen Sie sich vorher ein eigenes Benutzerkonto auf Ihren Namen und Ihre E-Mail Adresse erstellen.',
-    'The registration is of course free of cost and nonbinding.' => 'Die Registrierung ist natürlich kostenlos und unverbindlich.',
+    'The registration is of course free of cost and nonbinding.' => 'Die Registrierung ist natürlich kostenlos und unverbindlich.<br><br><br><strong>Die Registrierung ist derzeit nur für Abteilungsmitglieder möglich!</strong> Externe melden sich bitte zur Buchung direkt bei der Vorstandschaft.',
 
     'We are very sorry, but the registration is currently not possible.' => 'Entschuldigung, aber die Registrierung ist derzeit nicht möglich.',
 
