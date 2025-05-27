@@ -16,7 +16,7 @@ return array(
         'port' => 3306,
     ),
     'mail' => array(
-        'type' => 'sendmail', // or 'smtp' or 'smtp-tls' (or 'file', to not send, but save to file (data/mails/))
+        'type' => 'file', // or 'smtp' or 'smtp-tls' (or 'file', to not send, but save to file (data/mails/))
         'address' => 'platzreservierung@tennis-schwabmuenchen.de',
             // Make sure 'bookings.example.com' matches the hosting domain when using type 'sendmail'
 
